@@ -16,7 +16,6 @@ class BlockType(Enum):
 
 def block_to_block_type(block):
     lines = block.split("\n")
-
     if block.startswith(("# ", "## ", "### ", "#### ", "##### ", "###### ")):
         return BlockType.HEADING
     if len(lines) > 1 and lines[0].startswith("```") and lines[-1].startswith("```"):
@@ -38,22 +37,7 @@ def block_to_block_type(block):
                 return BlockType.PARAGRAPH
             i += 1
         return BlockType.ORDERED_LIST
-    return BlockType.PARAGRAPH
-
-
-def block_to_block_type(block):
-    if block.startswith("# "): 
-        return BlockType.HEADING
-    if block.startswith("> "):
-        return BlockType.QUOTE
-    if block.startswith("- "):
-        return BlockType.UNORDERED_LIST 
-    if block.startswith("1. "):
-        return BlockType.ORDERED_LIST 
-    if block.startswith("```"):
-        return BlockType.CODE 
-    else:
-        return BlockType.PARAGRAPH            
+    return BlockType.PARAGRAPH           
 
 
 def markdown_to_blocks(markdown):
